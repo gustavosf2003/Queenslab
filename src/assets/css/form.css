@@ -1,0 +1,12 @@
+.inline-form-card , .label-full{
+	margin-top: 1rem;
+}
+.button-buy{
+	width: 100%;
+	border:none;
+	border-radius: 0.4rem;
+	color:white;
+	background-color: #48AC98;
+	height: 2.5rem;
+	font-size: 1rem;
+}
