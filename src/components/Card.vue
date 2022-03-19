@@ -2,7 +2,7 @@
 	<section>
 		<div class="form-container">
 			<div class="credit-card-box">
-				<div class="flip">
+				<div class="flip" :style="spin == 1 ? 'transform: rotateY(180deg)' : ''">
 					<div class="front">
 						<img class="chip" :src="image">
 						<div class="logo">
@@ -29,7 +29,7 @@
 						</div>
 						<div class="ccv">
 							<label>CCV</label>
-							<p>{{ccv}}</p>
+							<b>{{ccv}}</b>
 						</div>
 					</div>
 				</div>
@@ -37,7 +37,7 @@
 			<Message v-if="successPurchase == true" message="Successful Purchase"/>
 			<form @submit="buy" class="field">
 				<label class="label label-full">Card Number</label>
-				<input type="text" class="input" v-model="number" autocomplete="off" minlength="13" maxlength="16" pattern="[0-9]+$" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required >
+				<input type="text" class="input" v-model="number" minlength="13" maxlength="16" pattern="[0-9]+$" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required >
 				<label class="label label-full">Card Holder</label>
 				<input type="text" class="input" v-model="holder" minlength="3" maxlength="18" pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)" required >
 				<article class="inline-form-card columns">
@@ -94,52 +94,60 @@
 					</article>
 					<article class="column">
 						<label class="label">CCV</label>
-						<input type="text" class="input" v-model="ccv" minlength="2" maxlength="3" onkeypress="return event.charCode >= 48 && event.charCode <= 57" pattern="[0-9]+$" required >
+						<input type="text" @focus="rotate" @blur="rotate" class="input hover" v-model="ccv" minlength="2" maxlength="3" onkeypress="return event.charCode >= 48 && event.charCode <= 57" pattern="[0-9]+$" required >
 					</article>
 				</article>
 				<input type="submit" value="Buy Product" class="button-buy"/>
 			</form>
-    	</div>
-  </section>
+ 		</div>
+	</section>
 </template>
 
 <script>
 import image from "../assets/img/chip.png"
 import Message from "./Message.vue"
 export default {
-  name:"Card",
-  components:{
-	  Message
-  },
-  data(){
-    return{
-		successPurchase: false,
-		image:image,
-		number:"",
-		holder:"",
-		year: "",
-		month:"",
-		ccv:""
-	}
+	name:"Card",
+	components:{
+		Message
 	},
-  methods:{
-	buy(e) {
-		e.preventDefault()
-		const number = this.number;
-		const holder = this.holder;
-		const expiration = `${this.month}/${this.year}`;
-		const ccv = this.ccv
-		console.log(`Card Number: ${number}\nCard Holder: ${holder}\nExpiration: ${expiration}\nCCV: ${ccv}\n`)
-		this.number = "";
-		this.holder= "";
-		this.month = "";
-		this.year = "";
-		this.ccv = ""
-		this.successPurchase = true
-		setTimeout(()=> this.successPurchase = false ,2800)
-	}
-  },
-  filters:{
+	data(){
+		return{
+			successPurchase: false,
+			image:image,
+			number:"",
+			holder:"",
+			year: "",
+			month:"",
+			ccv:"",
+			spin: 0
+		}
+	},
+	methods:{
+		buy(e) {
+			e.preventDefault()
+			const number = this.number;
+			const holder = this.holder;
+			const expiration = `${this.month}/${this.year}`;
+			const ccv = this.ccv
+			console.log(`Card Number: ${number}\nCard Holder: ${holder}\nExpiration: ${expiration}\nCCV: ${ccv}\n`)
+			this.number = "";
+			this.holder= "";
+			this.month = "";
+			this.year = "";
+			this.ccv = ""
+			this.successPurchase = true
+			setTimeout(()=> this.successPurchase = false ,2800)
+		},
+		rotate(){
+			if(this.spin == 0){
+				this.spin = 1
+			}else{
+				this.spin = 0
+			}
+		}
+	},
+	filters:{
 		card: function(value){
 			var cardNumber = value;
 			var first = cardNumber.slice(0,4)
@@ -149,7 +157,7 @@ export default {
 			var newFormat = `${first} ${second} ${third} ${fourth}`
 			return newFormat
 		}
-  }
+	}
 }
 </script>
 <style src="../assets/css/card.css" scoped></style>

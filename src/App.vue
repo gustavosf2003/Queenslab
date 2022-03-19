@@ -18,5 +18,20 @@ export default {
 html{
   background-color: #D3E9FC;
 }
+body::-webkit-scrollbar {
+  width: 0.7rem;
+}
 
+body::-webkit-scrollbar-track {
+  background: none;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #48AC98;
+  border-radius: 0.5rem;
+}
+@font-face {
+    src: url("/assets/fonts/CeraProMedium.otf");
+    font-family: "CeraProMedium";
+}
 </style>
