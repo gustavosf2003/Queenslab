@@ -7,6 +7,7 @@
 	transform: translateX(-50%);
 	background-color: none;
 }
+/* This is the class that rotates the card when 'credit-card' is hovered */
 .credit-card:hover .spin{
 	transform: rotateY(180deg);
 }
@@ -19,6 +20,7 @@
 	position: absolute;
 	color: #fff;
 }
+/* This is the class that styles the effect of spin */
 .spin {
 	transition: 0.8s;
 	transform-style: preserve-3d;
@@ -64,13 +66,13 @@ label {
 	opacity: 0.5;
 	margin-bottom: 0.2rem;
 }
-.card-holder, .card-expiration-date {
+.card-holder, .expiration-date {
 	position: absolute;
 	margin: 10.4rem 0 0 1.4rem;
 	font-size: 1.2rem;
 	text-transform: capitalize;
 }
-.card-expiration-date {
+.expiration-date {
 	text-align: right;
 	right: 1rem;
 }
@@ -92,6 +94,7 @@ label {
 	margin: -1.4rem 0 0 0;
 	color: #fff;
 }
+/* Media query to mobile devices */
 @media (max-width: 630px) {
 	.credit-card{
 		width: 20rem;

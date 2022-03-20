@@ -15,9 +15,12 @@ export default {
 };
 </script>
 <style>
+/* Global css */
 html{
   background-color: #D3E9FC;
+  
 }
+/* Scroll Bar Design */
 body::-webkit-scrollbar {
   width: 0.6rem;
 }
@@ -29,9 +32,5 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: #48AC98;
   border-radius: 0.5rem;
-}
-@font-face {
-    src: url("/assets/fonts/CeraProMedium.otf");
-    font-family: "CeraProMedium";
 }
 </style>

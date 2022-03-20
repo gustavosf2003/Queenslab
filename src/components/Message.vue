@@ -1,4 +1,5 @@
 <template>
+	<!-- This component receives the message dynamically and can be easily reusable -->
 	<article class="purchase-message">
 		<p>{{ message }}</p>
 	</article>
