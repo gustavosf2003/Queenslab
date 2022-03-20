@@ -48,7 +48,7 @@
 			
 			<!-- This input only accept numbers and the V-Mask library is working here. -->
 			<!-- Check the documentation: https://www.npmjs.com/package/v-mask -->
-			<input type="text" v-mask="'#### #### #### ####'" id="number" class="input" v-model="number"  onkeypress="return event.charCode >= 48 && event.charCode <= 57" required >
+			<input type="text" v-mask="'#### #### #### ####'" id="number" minlength="17" maxlength="21" class="input" v-model="number"  onkeypress="return event.charCode >= 48 && event.charCode <= 57" required >
 
 			<!-- //This input only accept letters -->
 			<label class="label label-full">Card Holder</label>
@@ -111,7 +111,7 @@
 				<article class="column">
 					<label class="label">CCV</label>
 					<!-- This is the trigger that spin the card when the CCV receives the focus -->
-					<input type="text" id="ccv" @focus="rotate" @blur="rotate" class="input hover" v-model="ccv" minlength="2" maxlength="3" onkeypress="return event.charCode >= 48 && event.charCode <= 57" pattern="[0-9]+$" required >
+					<input type="text" id="ccv" @focus="rotate" @blur="rotate" class="input hover" v-model="ccv" minlength="3" maxlength="3" onkeypress="return event.charCode >= 48 && event.charCode <= 57" pattern="[0-9]+$" required >
 				</article>
 			</article>
 			<input type="submit" id="submit" value="Buy Product" class="button-buy"/>
