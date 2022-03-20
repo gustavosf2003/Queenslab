@@ -128,7 +128,7 @@ export default {
 	},
 	data(){
 		return{
-			successPurchase: false,
+			successPurchase: true,
 			image: image,
 			spin: 0,
 			// Card Content

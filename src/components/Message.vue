@@ -25,4 +25,10 @@ export default {
 	font-size: 1.2rem;
 	border-radius: 5px;
 }
+/* Media query to mobile devices */
+@media (max-width: 630px) {
+	.purchase-message{
+		font-size: 0.8rem;
+	}
+}
 </style>
