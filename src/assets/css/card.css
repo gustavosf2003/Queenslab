@@ -1,13 +1,13 @@
- .credit-card-box {
-	width: 400px;
-	height: 200px;
+.credit-card {
+	width: 25rem;
+	height: 12.5rem;
 	position: absolute;
 	top: -112px;
 	left: 50%;
 	transform: translateX(-50%);
 	background-color: none;
 }
-.credit-card-box:hover .flip{
+.credit-card:hover .spin{
 	transform: rotateY(180deg);
 }
 .front, .back {
@@ -19,12 +19,12 @@
 	position: absolute;
 	color: #fff;
 }
-.flip {
+.spin {
 	transition: 0.8s;
 	transform-style: preserve-3d;
 	position: relative;
 }
- .logo {
+.logo {
 	position: absolute;
 	right: 0.6rem;
 	width: 3.75rem;
@@ -36,7 +36,7 @@ svg {
 .back {
 	transform: rotateY(180deg);
 }
- .back .logo {
+.back .logo {
 	top: 80%;
 }
 .chip {
@@ -45,7 +45,7 @@ svg {
 	height: 4rem;
 	margin: 1.4rem;
 }
- .strip {
+.strip {
 	background-color: #000;
 	position: absolute;
 	width: 100%;
@@ -60,9 +60,9 @@ svg {
 label {
 	font-size: 0.7rem;
 	display: block;
-	 letter-spacing: 1px;
-	 opacity: 0.5;
-	 margin-bottom: 0.2rem;
+	letter-spacing: 1px;
+	opacity: 0.5;
+	margin-bottom: 0.2rem;
 }
 .card-holder, .card-expiration-date {
 	position: absolute;
@@ -93,7 +93,7 @@ label {
 	color: #fff;
 }
 @media (max-width: 630px) {
-	.credit-card-box{
-		width: 320px;
+	.credit-card{
+		width: 20rem;
 	}
 }

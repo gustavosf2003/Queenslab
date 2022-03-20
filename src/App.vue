@@ -19,7 +19,7 @@ html{
   background-color: #D3E9FC;
 }
 body::-webkit-scrollbar {
-  width: 0.7rem;
+  width: 0.6rem;
 }
 
 body::-webkit-scrollbar-track {
