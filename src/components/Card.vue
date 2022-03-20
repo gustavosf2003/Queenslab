@@ -12,7 +12,7 @@
 						</svg>
 					</div>
 					<!-- Here happens the effect of the mask on the card number.  -->
-					<p class="card-number">{{number}}</p>
+					<p class="card-number">{{number | card}}</p>
 						<article class="card-holder">
 							<label>Card holder</label>
 							<span>{{holder}}</span>
@@ -46,11 +46,10 @@
 		<form @submit="buy" id="form" class="field">
 			<label class="label label-full">Card Number</label>
 			
-			<!-- This input only accept numbers and the V-Mask library is working here. -->
-			<!-- Check the documentation: https://www.npmjs.com/package/v-mask -->
-			<input type="text" v-mask="'#### #### #### ####'" id="number" minlength="17" maxlength="21" class="input" v-model="number"  onkeypress="return event.charCode >= 48 && event.charCode <= 57" required >
+			<!-- This input only accept numbers -->
+			<input type="text" id="number" minlength="13" maxlength="16" class="input" v-model="number" pattern="[0-9]+$" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required >
 
-			<!-- //This input only accept letters -->
+			<!-- This input only accept letters -->
 			<label class="label label-full">Card Holder</label>
 			<input type="text" id="holder" class="input" v-model="holder" minlength="3" maxlength="18" pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)" required >
 			
@@ -174,6 +173,17 @@ export default {
 			}else{
 				this.spin = 0
 			}
+		}
+	},
+	filters:{
+		card: function(value){
+			var cardNumber = value;
+			var first = cardNumber.slice(0,4)
+			var second = cardNumber.slice(4,8)
+			var third = cardNumber.slice(8,12)
+			var fourth = cardNumber.slice(12,16)
+			var newFormat = `${first} ${second} ${third} ${fourth}`
+			return newFormat
 		}
 	},
 	mounted(){
