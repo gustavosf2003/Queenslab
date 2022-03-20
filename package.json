@@ -1,6 +1,7 @@
 {
   "name": "interface",
   "version": "0.1.0",
+  "homepage": "./l",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

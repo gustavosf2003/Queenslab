@@ -51,7 +51,7 @@
 
 			<!-- This input only accept letters -->
 			<label class="label label-full">Card Holder</label>
-			<input type="text" id="holder" class="input" v-model="holder" minlength="3" maxlength="18" pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)" required >
+			<input type="text" id="holder" class="input" v-model="holder" minlength="3" maxlength="18" pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" onkeypress="return (event.charCode == 32) ||(event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)" required >
 			
 			<!-- Here I decided to use the Bulma's columns instead Flexbox -->
 			<!-- Documentation: https://bulma.io/documentation/columns/basics/ -->
