@@ -12,7 +12,7 @@
 						</svg>
 					</div>
 					<!-- Here happens the effect of the mask on the card number.  -->
-					<p class="card-number">{{number | card}}</p>
+					<p class="card-number">{{number}}</p>
 						<article class="card-holder">
 							<label>Card holder</label>
 							<span>{{holder}}</span>
@@ -43,13 +43,18 @@
 		<!-- This is the message component that appears only when the form is successfully submitted. -->
 		<!-- The content can be edited by changing the "message" Prop -->
 		<Message v-if="successPurchase == true" message="Successful Purchase"/>
-		<form @submit="buy" class="field">
+		<form @submit="buy" id="form" class="field">
 			<label class="label label-full">Card Number</label>
-			<!-- Here is the validation that allows the user to write only the correct types of characters -->
-			<input type="text" class="input" v-model="number" minlength="13" maxlength="16" pattern="[0-9]+$" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required >
+			
+			<!-- This input only accept numbers and the V-Mask library is working here. -->
+			<!-- Check the documentation: https://www.npmjs.com/package/v-mask -->
+			<input type="text" v-mask="'#### #### #### ####'" id="number" class="input" v-model="number"  onkeypress="return event.charCode >= 48 && event.charCode <= 57" required >
+
+			<!-- //This input only accept letters -->
 			<label class="label label-full">Card Holder</label>
-			<input type="text" class="input" v-model="holder" minlength="3" maxlength="18" pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)" required >
-			<!-- Here I decided to use the Bulma's columns. -->
+			<input type="text" id="holder" class="input" v-model="holder" minlength="3" maxlength="18" pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)" required >
+			
+			<!-- Here I decided to use the Bulma's columns instead Flexbox -->
 			<!-- Documentation: https://bulma.io/documentation/columns/basics/ -->
 			<article class="inline-form-card columns">
 				<article class="column">
@@ -57,7 +62,7 @@
 						<article class="column is-two-fifths">
 							<label class="label">Month</label>
 							<div class="select is-normal">
-								<select v-model="month" required>
+								<select id="month" v-model="month" required>
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -76,7 +81,7 @@
 						<article class="column">
 							<label class="label">Year</label>
 							<div class="select is-normal">
-								<select v-model="year" required>
+								<select id="year" v-model="year" required>
 									<option>2022</option>
 									<option>2023</option>
 									<option>2024</option>
@@ -106,10 +111,10 @@
 				<article class="column">
 					<label class="label">CCV</label>
 					<!-- This is the trigger that spin the card when the CCV receives the focus -->
-					<input type="text" @focus="rotate" @blur="rotate" class="input hover" v-model="ccv" minlength="2" maxlength="3" onkeypress="return event.charCode >= 48 && event.charCode <= 57" pattern="[0-9]+$" required >
+					<input type="text" id="ccv" @focus="rotate" @blur="rotate" class="input hover" v-model="ccv" minlength="2" maxlength="3" onkeypress="return event.charCode >= 48 && event.charCode <= 57" pattern="[0-9]+$" required >
 				</article>
 			</article>
-			<input type="submit" value="Buy Product" class="button-buy"/>
+			<input type="submit" id="submit" value="Buy Product" class="button-buy"/>
 		</form>
 	</section>
 </template>
@@ -127,7 +132,7 @@ export default {
 			successPurchase: false,
 			image: image,
 			spin: 0,
-			// Card Content:
+			// Card Content
 			number: "",
 			holder: "",
 			year: "",
@@ -144,14 +149,17 @@ export default {
 				const holder = this.holder;
 				const expiration = `${this.month}/${this.year}`;
 				const ccv = this.ccv
+
 				// This is the output on Console.log
 				console.log(`Card Number: ${number}\nCard Holder: ${holder}\nExpiration: ${expiration}\nCCV: ${ccv}\n`)
+				
 				// Cleaning the input fields
 				this.number = "";
 				this.holder= "";
 				this.month = "";
 				this.year = "";
-				this.ccv = ""
+				this.ccv = "";
+
 				// This is the trigger to show the success message and the duration can be chaging updating the time in SetTimeout()
 				this.successPurchase = true
 				setTimeout(()=> this.successPurchase = false ,2800)
@@ -168,17 +176,8 @@ export default {
 			}
 		}
 	},
-	// This is the mask of empty space that happens in the card number
-	filters:{
-		card: function(value){
-			var cardNumber = value;
-			var first = cardNumber.slice(0,4)
-			var second = cardNumber.slice(4,8)
-			var third = cardNumber.slice(8,12)
-			var fourth = cardNumber.slice(12,16)
-			var newFormat = `${first} ${second} ${third} ${fourth}`
-			return newFormat
-		}
+	mounted(){
+		console.log("Hey Hacker 👋")
 	}
 }
 </script>

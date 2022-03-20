@@ -20,7 +20,7 @@ html{
   background-color: #D3E9FC;
   
 }
-/* Scroll Bar Design */
+/* Scroll Bar */
 body::-webkit-scrollbar {
   width: 0.6rem;
 }
