@@ -42,7 +42,7 @@ yarn lint
 
 > This project simulates the procedure for online purchase using credit card.
 
->The project was hosted in GitHub pages and the main url is https://gustavosf2003.github.io/Movie-App/ [Click here :)](https://github.com/gustavosf2003)
+>The project was hosted in GitHub pages and the main url is https://gustavosf2003.github.io/card/ [Click here :)](https://gustavosf2003.github.io/card/)
 
 ## Developer
 
